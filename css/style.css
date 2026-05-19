@@ -817,3 +817,280 @@ a:hover { opacity: 0.85; }
     .hero-actions { flex-direction: column; }
     .btn { justify-content: center; }
 }
+
+
+/* ===================================
+   WALKTHROUGH STYLES
+   Add this to the BOTTOM of your css/style.css
+   =================================== */
+
+/* --- Platform Cards (index.html) --- */
+.walkthrough-platforms {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 24px;
+}
+
+.platform-card {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 32px;
+    cursor: pointer;
+    transition: var(--transition);
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.platform-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.platform-card:hover {
+    transform: translateY(-4px);
+    opacity: 1;
+}
+
+.htb-card::before { background: #9fef00; }
+.thm-card::before { background: #ef3b36; }
+
+.htb-card:hover { border-color: #9fef00; box-shadow: 0 8px 30px rgba(159,239,0,0.1); }
+.thm-card:hover { border-color: #ef3b36; box-shadow: 0 8px 30px rgba(239,59,54,0.1); }
+
+.platform-card:hover::before { opacity: 1; }
+
+.platform-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    flex-shrink: 0;
+}
+
+.htb-icon { background: rgba(159,239,0,0.1); color: #9fef00; }
+.thm-icon { background: rgba(239,59,54,0.1); color: #ef3b36; }
+
+.platform-info h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+}
+
+.platform-info p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 12px;
+}
+
+.platform-link {
+    font-size: 0.85rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: var(--transition);
+}
+
+.htb-card .platform-link { color: #9fef00; }
+.thm-card .platform-link { color: #ef3b36; }
+
+/* --- Walkthroughs Page --- */
+.wt-page {
+    padding: 120px 0 80px;
+}
+
+.wt-page-header {
+    margin-bottom: 40px;
+}
+
+.wt-page-header h1 {
+    font-size: 2.4rem;
+    font-weight: 800;
+    margin: 16px 0 12px;
+}
+
+.wt-page-header p {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    max-width: 640px;
+}
+
+/* --- Filter Buttons --- */
+.wt-filters {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+}
+
+.wt-filter {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 18px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    font-family: var(--font-body);
+}
+
+.wt-filter:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.wt-filter.active {
+    background: var(--accent);
+    color: var(--bg-primary);
+    border-color: var(--accent);
+}
+
+/* --- Walkthrough Cards Grid --- */
+.wt-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+}
+
+.wt-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+}
+
+.wt-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+}
+
+.wt-card[data-platform="htb"]:hover { border-color: #9fef00; }
+.wt-card[data-platform="thm"]:hover { border-color: #ef3b36; }
+
+.wt-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+}
+
+.wt-platform-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 10px;
+    border-radius: 100px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.htb-tag { background: rgba(159,239,0,0.1); color: #9fef00; }
+.thm-tag { background: rgba(239,59,54,0.1); color: #ef3b36; }
+
+.wt-difficulty {
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 100px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-family: var(--font-mono);
+}
+
+.wt-difficulty.easy { background: rgba(63,185,80,0.1); color: #3fb950; }
+.wt-difficulty.medium { background: rgba(245,158,11,0.1); color: #f59e0b; }
+.wt-difficulty.hard { background: rgba(239,68,68,0.1); color: #ef4444; }
+
+.wt-card h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.wt-card p {
+    color: var(--text-secondary);
+    font-size: 0.88rem;
+    line-height: 1.7;
+    margin-bottom: 16px;
+    flex-grow: 1;
+}
+
+.wt-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+}
+
+.wt-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.wt-mini-tag {
+    background: var(--bg-tertiary);
+    color: var(--text-muted);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-family: var(--font-mono);
+}
+
+.wt-date {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+}
+
+.wt-date i { margin-right: 4px; }
+
+.wt-header-tags {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+    margin-top: 16px;
+}
+
+/* Fade in animation for filtered cards */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+    .walkthrough-platforms { grid-template-columns: 1fr; }
+    .platform-card { flex-direction: column; text-align: center; }
+    .wt-grid { grid-template-columns: 1fr; }
+    .wt-page-header h1 { font-size: 1.8rem; }
+}
