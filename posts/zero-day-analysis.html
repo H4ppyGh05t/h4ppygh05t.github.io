@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anatomy of a Zero-Day | eugene.sec</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <span class="logo-icon"><i class="fas fa-shield-halved"></i></span>
+                <span class="logo-text">eugene<span class="accent">.sec</span></span>
+            </a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../index.html#blog" class="active">Blog</a></li>
+                <li><a href="../index.html#sofa-feed">Vuln Feed</a></li>
+                <li><a href="../index.html#about">About</a></li>
+            </ul>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Post Content -->
+    <article class="post-page">
+        <div class="container">
+            <div class="post-header">
+                <a href="../index.html#blog" class="back-link"><i class="fas fa-arrow-left"></i> Back to Blog</a>
+                <div class="card-tag"><i class="fas fa-crosshairs"></i> Zero-Day Research</div>
+                <h1>Anatomy of a Zero-Day: Dissecting CVE-2026-XXXX</h1>
+                <div class="post-meta">
+                    <span><i class="far fa-calendar"></i> 17 May 2026</span>
+                    <span><i class="far fa-clock"></i> 10 min read</span>
+                    <span><i class="far fa-user"></i> Eugene Myburgh</span>
+                </div>
+            </div>
+
+            <div class="post-body">
+                <p class="lead">Zero-day vulnerabilities represent the sharpest edge of the cyber threat 
+                   landscape. When a new one drops, the clock starts ticking — for attackers trying to 
+                   exploit it and defenders racing to mitigate. In this post, we tear apart a recent 
+                   zero-day to understand how it works and what we can learn from it.</p>
+
+                <h2>What Is a Zero-Day?</h2>
+                <p>A zero-day vulnerability is a software flaw unknown to the vendor — meaning there are 
+                   <strong>zero days</strong> of available patches when it's first exploited in the wild. 
+                   These are the most dangerous class of vulnerabilities because traditional signature-based 
+                   defences are blind to them.</p>
+                <p>In recent years, zero-days have become a commodity. Nation-state actors, commercial 
+                   spyware vendors, and advanced cybercrime groups all invest heavily in discovering 
+                   and weaponising them.</p>
+
+                <h2>The Discovery</h2>
+                <p>This particular vulnerability was first spotted by threat researchers analysing 
+                   anomalous crash reports from a popular enterprise application. The crash pattern 
+                   showed telltale signs of heap corruption — a classic indicator of exploitation.</p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span><i class="fas fa-code"></i> Crash Dump Analysis</span>
+                        <span>windbg output</span>
+                    </div>
+                    <pre><code>0:000> !analyze -v
+EXCEPTION_RECORD:  (.exr -1)
+ExceptionAddress: 00007ff8`1a3b4c20
+   ExceptionCode: c0000005 (Access violation)
+   ExceptionFlags: 00000000
+NumberParameters: 2
+   Parameter[0]: 0000000000000001
+   Parameter[1]: 0000024f`deadbeef
+
+FAULTING_IP:
+vulnerable_module!ParseInput+0x1a0
+00007ff8`1a3b4c20 488b01  mov rax,qword ptr [rcx]
+
+STACK_TEXT:
+00000083`f77fedd0 00007ff8`1a3b4c20 vulnerable_module!ParseInput+0x1a0
+00000083`f77fee10 00007ff8`1a3b2100 vulnerable_module!HandleRequest+0x340
+00000083`f77fee80 00007ff8`1a3b1000 vulnerable_module!MainLoop+0x88</code></pre>
+                </div>
+
+                <h2>The Exploit Chain</h2>
+                <p>The vulnerability follows a classic use-after-free pattern:</p>
+                <ul>
+                    <li><strong>Stage 1 — Trigger:</strong> Specially crafted input causes an object to be freed prematurely</li>
+                    <li><strong>Stage 2 — Heap Spray:</strong> Attacker fills the freed memory region with controlled data</li>
+                    <li><strong>Stage 3 — Code Execution:</strong> When the dangling pointer is dereferenced, the attacker's code runs</li>
+                    <li><strong>Stage 4 — Payload:</strong> A reverse shell or implant is deployed with the process's privileges</li>
+                </ul>
+
+                <h2>MITRE ATT&amp;CK Mapping</h2>
+                <p>Mapping this exploit chain to the MITRE ATT&amp;CK framework:</p>
+
+                <div class="callout">
+                    <i class="fas fa-map"></i>
+                    <div>
+                        <strong>ATT&amp;CK Techniques Observed:</strong><br>
+                        • <strong>T1203</strong> — Exploitation for Client Execution<br>
+                        • <strong>T1055</strong> — Process Injection<br>
+                        • <strong>T1071.001</strong> — Application Layer Protocol (C2 over HTTPS)<br>
+                        • <strong>T1041</strong> — Exfiltration Over C2 Channel
+                    </div>
+                </div>
+
+                <h2>Detection Opportunities</h2>
+                <p>Even without a patch, defenders have several detection angles:</p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span><i class="fas fa-code"></i> Sigma Rule</span>
+                        <span>detect-cve-2026-xxxx.yml</span>
+                    </div>
+                    <pre><code>title: Suspicious Crash Pattern - CVE-2026-XXXX
+status: experimental
+description: Detects crash patterns associated with CVE-2026-XXXX exploitation
+logsource:
+    product: windows
+    service: application
+detection:
+    selection:
+        EventID: 1000
+        Application|endswith: '\vulnerable_app.exe'
+        Exception.Code: 'c0000005'
+    filter:
+        FaultModule|contains: 'vulnerable_module'
+    condition: selection and filter
+level: high
+tags:
+    - attack.execution
+    - attack.t1203
+    - cve.2026.xxxx</code></pre>
+                </div>
+
+                <h2>Lessons Learned</h2>
+                <p>Every zero-day is a case study in both offensive tradecraft and defensive gaps. 
+                   Key takeaways from this one:</p>
+                <ul>
+                    <li><strong>Crash telemetry is gold</strong> — unusual crash patterns are often the first sign of exploitation</li>
+                    <li><strong>Behavioural detection beats signatures</strong> — focus on what the exploit does, not what it looks like</li>
+                    <li><strong>Speed matters</strong> — the window between disclosure and patch is when you're most vulnerable</li>
+                    <li><strong>Defence in depth works</strong> — no single control would have stopped this chain, but layered defences make exploitation exponentially harder</li>
+                </ul>
+
+                <div class="callout">
+                    <i class="fas fa-lightbulb"></i>
+                    <div>
+                        <strong>Key Takeaway:</strong> You don't need to reverse-engineer every zero-day. 
+                        But understanding the patterns — heap sprays, use-after-free, type confusion — 
+                        helps you build detection logic that catches entire classes of exploits, 
+                        not just individual CVEs.
+                    </div>
+                </div>
+
+                <h2>Further Reading</h2>
+                <ul>
+                    <li><a href="https://attack.mitre.org/" target="_blank">MITRE ATT&CK Framework</a></li>
+                    <li><a href="https://googleprojectzero.blogspot.com/" target="_blank">Google Project Zero Blog</a></li>
+                    <li><a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" target="_blank">CISA Known Exploited Vulnerabilities</a></li>
+                    <li><a href="https://sofa.macadmins.io" target="_blank">SOFA — Apple Security Feed</a></li>
+                </ul>
+            </div>
+
+            <div class="post-footer-nav">
+                <a href="../index.html#blog" class="btn btn-outline"><i class="fas fa-arrow-left"></i> All Posts</a>
+            </div>
+        </div>
+    </article>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2026 Eugene Myburgh. Built with <i class="fas fa-skull-crossbones accent"></i> and hosted on GitHub Pages.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>

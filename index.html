@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eugene Myburgh | Cybersecurity Blog</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon"><i class="fas fa-shield-halved"></i></span>
+                <span class="logo-text">eugene<span class="accent">.sec</span></span>
+            </a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#sofa-feed">Vuln Feed</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="https://github.com" target="_blank" class="nav-github"><i class="fab fa-github"></i></a></li>
+            </ul>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-bg-grid"></div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge"><i class="fas fa-circle-dot pulse"></i> Cybersecurity Blog</div>
+                <h1>Hi, I'm <span class="accent">Eugene Myburgh</span></h1>
+                <p class="hero-subtitle">
+                    I write about <strong>cybersecurity</strong> — threat intelligence, vulnerability research, 
+                    offensive security, and defending the digital frontier. Breaking things down so we can 
+                    build them back stronger.
+                </p>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number" id="stat-cves">30K+</span>
+                        <span class="stat-label">CVEs in 2025</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">365</span>
+                        <span class="stat-label">Days of Threats</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">∞</span>
+                        <span class="stat-label">Attack Surface</span>
+                    </div>
+                </div>
+                <div class="hero-actions">
+                    <a href="#blog" class="btn btn-primary"><i class="fas fa-newspaper"></i> Read the Blog</a>
+                    <a href="#sofa-feed" class="btn btn-outline"><i class="fas fa-shield-virus"></i> Live Vuln Feed</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="section" id="blog">
+        <div class="container">
+            <div class="section-header">
+                <h2><i class="fas fa-pen-nib"></i> Latest Posts</h2>
+                <p>Threat research, vulnerability analysis, and security deep dives</p>
+            </div>
+            <div class="blog-grid">
+                <!-- Blog Card 1 -->
+                <article class="blog-card" onclick="window.location.href='posts/zero-day-analysis.html'">
+                    <div class="card-tag"><i class="fas fa-crosshairs"></i> Zero-Day Research</div>
+                    <h3>Anatomy of a Zero-Day: Dissecting CVE-2026-XXXX</h3>
+                    <p>A step-by-step technical breakdown of a recent zero-day vulnerability in the wild — 
+                       how it was discovered, how the exploit chain works, and what defenders need to know.</p>
+                    <div class="card-meta">
+                        <span><i class="far fa-calendar"></i> 17 May 2026</span>
+                        <span><i class="far fa-clock"></i> 10 min read</span>
+                    </div>
+                </article>
+
+                <!-- Blog Card 2 -->
+                <article class="blog-card">
+                    <div class="card-tag"><i class="fas fa-virus"></i> Ransomware</div>
+                    <h3>Ransomware in 2026: The Evolving Tactics of Big Game Hunting</h3>
+                    <p>How ransomware gangs have shifted from mass phishing to targeted supply-chain attacks, 
+                       double extortion, and the rise of Ransomware-as-a-Service (RaaS) affiliates.</p>
+                    <div class="card-meta">
+                        <span><i class="far fa-calendar"></i> 12 May 2026</span>
+                        <span><i class="far fa-clock"></i> 7 min read</span>
+                    </div>
+                </article>
+
+                <!-- Blog Card 3 -->
+                <article class="blog-card">
+                    <div class="card-tag"><i class="fas fa-magnifying-glass"></i> Threat Hunting</div>
+                    <h3>Threat Hunting with MITRE ATT&amp;CK: A Practical Guide</h3>
+                    <p>How to map adversary TTPs to the MITRE ATT&amp;CK framework and build detection rules 
+                       that actually catch real-world intrusions — not just checkbox compliance.</p>
+                    <div class="card-meta">
+                        <span><i class="far fa-calendar"></i> 5 May 2026</span>
+                        <span><i class="far fa-clock"></i> 12 min read</span>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOFA Feed Section -->
+    <section class="section section-alt" id="sofa-feed">
+        <div class="container">
+            <div class="section-header">
+                <h2><i class="fab fa-apple"></i> Live Apple Vulnerability Feed</h2>
+                <p>Powered by <a href="https://sofa.macadmins.io" target="_blank" class="accent-link">SOFA (macadmins.io)</a> &mdash; tracking Apple security patches and CVEs in real time</p>
+            </div>
+
+            <div class="sofa-status-bar" id="sofa-status">
+                <span class="status-dot loading"></span>
+                <span id="sofa-status-text">Fetching latest vulnerability data from SOFA...</span>
+            </div>
+
+            <div class="sofa-grid" id="sofa-grid">
+                <!-- Cards populated by JS -->
+                <div class="sofa-loading">
+                    <div class="spinner"></div>
+                    <p>Loading Apple security data...</p>
+                </div>
+            </div>
+
+            <div class="sofa-footer-note">
+                <p><i class="fas fa-info-circle"></i> Data fetched live from 
+                <code>sofa.macadmins.io/v1/macos_data_feed.json</code>. 
+                Updates automatically when Apple releases new security patches.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2><i class="fas fa-user-secret"></i> About Me</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>I'm <strong>Eugene Myburgh</strong>, based in <strong>Gauteng, South Africa</strong>. 
+                       By day I work as a DEX Technical Lead, but my real passion lives at the intersection of 
+                       <strong>offence and defence</strong> in cybersecurity.</p>
+                    <p>This blog is where I break down real-world threats, analyse vulnerabilities, 
+                       share threat hunting techniques, and explore the ever-changing landscape of 
+                       information security. Whether it's a new zero-day, a ransomware campaign, or 
+                       a clever phishing kit — I dig into the details so you don't have to.</p>
+                    <p>I believe that good security starts with understanding the attacker's perspective. 
+                       The more we share knowledge openly, the harder we make it for adversaries.</p>
+                    <div class="tech-stack">
+                        <h4>Tools &amp; Frameworks</h4>
+                        <div class="tech-tags">
+                            <span class="tech-tag">MITRE ATT&CK</span>
+                            <span class="tech-tag">Wireshark</span>
+                            <span class="tech-tag">Burp Suite</span>
+                            <span class="tech-tag">Nmap</span>
+                            <span class="tech-tag">Metasploit</span>
+                            <span class="tech-tag">OSINT</span>
+                            <span class="tech-tag">Ghidra</span>
+                            <span class="tech-tag">YARA Rules</span>
+                            <span class="tech-tag">Sigma Rules</span>
+                            <span class="tech-tag">Splunk</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">PowerShell</span>
+                            <span class="tech-tag">Kali Linux</span>
+                            <span class="tech-tag">VirusTotal</span>
+                            <span class="tech-tag">Shodan</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-links">
+                    <a href="https://github.com" target="_blank" class="social-link">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                    <a href="https://linkedin.com" target="_blank" class="social-link">
+                        <i class="fab fa-linkedin"></i> LinkedIn
+                    </a>
+                    <a href="https://twitter.com" target="_blank" class="social-link">
+                        <i class="fab fa-x-twitter"></i> X / Twitter
+                    </a>
+                    <a href="mailto:eugene@example.com" class="social-link">
+                        <i class="fas fa-envelope"></i> Email
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2026 Eugene Myburgh. Built with <i class="fas fa-skull-crossbones accent"></i> and hosted on GitHub Pages.</p>
+                <p class="footer-sub">Apple vulnerability data provided by <a href="https://sofa.macadmins.io" target="_blank">SOFA — macadmins.io</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
