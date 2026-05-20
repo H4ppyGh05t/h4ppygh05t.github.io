@@ -1094,3 +1094,11 @@ a:hover { opacity: 0.85; }
     .wt-grid { grid-template-columns: 1fr; }
     .wt-page-header h1 { font-size: 1.8rem; }
 }
+
+.more-posts {
+
+    text-align: center;
+
+    margin-top: 40px;
+
+}
