@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ✏️ CHANGE: Update the page title to reflect the machine -->
+    <title>MACHINE NAME — Walkthrough | HappyGhost.sec</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- Navigation (DO NOT EDIT unless you want to change site links) -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <span class="logo-icon"><i class="fas fa-shield-halved"></i></span>
+                <span class="logo-text">HappyGhost<span class="accent">.sec</span></span>
+            </a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../index.html#blog">Blog</a></li>
+                <li><a href="../walkthroughs.html" class="active">Walkthroughs</a></li>
+                <li><a href="../index.html#about">About</a></li>
+            </ul>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Walkthrough Content -->
+    <article class="post-page">
+        <div class="container">
+            <div class="post-header">
+                <!-- ✏️ CHANGE: Set the correct back link destination -->
+                <a href="../walkthroughs.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Walkthroughs</a>
+
+                <!-- ✏️ CHANGE: Platform tag and difficulty -->
+                <div class="wt-header-tags">
+                    <span class="wt-platform-tag htb-tag"><i class="fas fa-cube"></i> HTB</span>
+                    <span class="wt-difficulty easy">Easy</span>
+                </div>
+
+                <!-- ✏️ CHANGE: Walkthrough title -->
+                <h1>Machine Name</h1>
+
+                <!-- ✏️ CHANGE: Update date, read time, and author -->
+                <div class="post-meta">
+                    <span><i class="far fa-calendar"></i> 21 May 2026</span>
+                    <span><i class="far fa-clock"></i> 15 min read</span>
+                    <span><i class="far fa-user"></i> Your Name</span>
+                </div>
+            </div>
+
+            <div class="post-body">
+                <!-- ✏️ CHANGE: Add a strong intro paragraph describing the machine and attack path -->
+                <p class="lead">Brief overview of the box, main exploit path, and what makes this walkthrough interesting.</p>
+
+                <!-- ✏️ CHANGE: Optional image block. Store image files in posts/images/ and use src="images/example-image.png" when this file is copied into posts/ -->
+                <!--
+                <figure class="post-image">
+                    <img src="images/example-image.png" alt="Short description of the image">
+                    <figcaption>Figure 1: Caption describing the image.</figcaption>
+                </figure>
+                -->
+
+                <div class="callout">
+                    <i class="fas fa-server"></i>
+                    <div>
+                        <strong>Machine Info</strong><br>
+                        • <strong>Platform:</strong> Hack The Box / TryHackMe<br>
+                        • <strong>OS:</strong> Linux / Windows<br>
+                        • <strong>Difficulty:</strong> Easy / Medium / Hard<br>
+                        • <strong>IP:</strong> 10.10.10.xxx<br>
+                        • <strong>Topics:</strong> Nmap, Web, SSH, Privilege Escalation
+                    </div>
+                </div>
+
+                <!-- ==================================================
+                     WALKTHROUGH SECTIONS — Uncomment or copy sections you need
+                     ================================================== -->
+
+                <!-- ── Reconnaissance ── -->
+                <!--
+                <h2><i class="fas fa-satellite-dish" style="color:var(--accent);margin-right:8px;font-size:0.85em;"></i> Reconnaissance</h2>
+                <p>Describe your initial scans and what ports/services you found.</p>
+                <div class="code-block">
+                    <div class="code-header">
+                        <span><i class="fas fa-code"></i> Bash</span>
+                        <span>nmap.sh</span>
+                    </div>
+                    <pre><code>nmap -sC -sV -oN nmap/initial 10.10.10.xxx</code></pre>
+                </div>
+                -->
+
+                <!-- ── Enumeration ── -->
+                <!--
+                <h2><i class="fas fa-binoculars" style="color:var(--accent);margin-right:8px;font-size:0.85em;"></i> Enumeration</h2>
+                <p>Explain what you discovered during enumeration and why it mattered.</p>
+                <div class="code-block">
+                    <div class="code-header">
+                        <span><i class="fas fa-code"></i> Bash</span>
+                        <span>enum.sh</span>
+                    </div>
+                    <pre><code>gobuster dir -u http://10.10.10.xxx -w /usr/share/wordlists/dirb/common.txt</code></pre>
+                </div>
+                -->
+
+                <!-- ── Exploitation ── -->
+                <!--
+                <h2><i class="fas fa-crosshairs" style="color:var(--accent);margin-right:8px;font-size:0.85em;"></i> Exploitation</h2>
+                <p>Document how you gained initial access and why the exploit worked.</p>
+                <div class="code-block">
+                    <div class="code-header">
+                        <span><i class="fas fa-code"></i> Bash</span>
+                        <span>exploit.sh</span>
+                    </div>
+                    <pre><code>python3 exploit.py --target 10.10.10.xxx --lhost 10.10.14.xxx</code></pre>
+                </div>
+                -->
+
+                <!-- ── Privilege Escalation ── -->
+                <!--
+                <h2><i class="fas fa-arrow-up" style="color:var(--accent);margin-right:8px;font-size:0.85em;"></i> Privilege Escalation</h2>
+                <p>Show how you escalated to root/admin and which weaknesses made it possible.</p>
+                <div class="code-block">
+                    <div class="code-header">
+                        <span><i class="fas fa-code"></i> Bash</span>
+                        <span>privesc.sh</span>
+                    </div>
+                    <pre><code>sudo -l
+find / -perm -4000 -type f 2>/dev/null</code></pre>
+                </div>
+                -->
+
+                <!-- ── Flags ── -->
+                <!--
+                <h2><i class="fas fa-flag" style="color:var(--accent);margin-right:8px;font-size:0.85em;"></i> Flags</h2>
+                <div class="callout">
+                    <i class="fas fa-flag"></i>
+                    <div>
+                        <strong>User Flag:</strong> <code>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</code><br>
+                        <strong>Root Flag:</strong> <code>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</code>
+                    </div>
+                </div>
+                -->
+
+                <!-- ── Lessons Learned ── -->
+                <!--
+                <h2><i class="fas fa-book" style="color:var(--accent);margin-right:8px;font-size:0.85em;"></i> Lessons Learned</h2>
+                <ul>
+                    <li><strong>Lesson 1:</strong> What did this box teach you?</li>
+                    <li><strong>Lesson 2:</strong> What would you do differently next time?</li>
+                    <li><strong>Tool note:</strong> New technique or utility discovered.</li>
+                </ul>
+                -->
+
+                <!-- ── Optional MITRE ATT&CK Mapping ── -->
+                <!--
+                <h2><i class="fas fa-map" style="color:var(--accent);margin-right:8px;font-size:0.85em;"></i> ATT&amp;CK Mapping</h2>
+                <div class="callout">
+                    <i class="fas fa-map"></i>
+                    <div>
+                        <strong>Techniques Used:</strong><br>
+                        • <strong>T1595</strong> — Active Scanning<br>
+                        • <strong>T1190</strong> — Exploit Public-Facing Application<br>
+                        • <strong>T1068</strong> — Privilege Escalation
+                    </div>
+                </div>
+                -->
+
+            </div>
+
+            <div class="post-footer-nav">
+                <a href="../walkthroughs.html" class="btn btn-outline"><i class="fas fa-arrow-left"></i> All Walkthroughs</a>
+            </div>
+        </div>
+    </article>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2026 HappyGhost. Built with <i class="fas fa-skull-crossbones accent"></i> and hosted on GitHub Pages.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>

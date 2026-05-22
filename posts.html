@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posts | HappyGhost.sec</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon"><i class="fas fa-shield-halved"></i></span>
+                <span class="logo-text">HappyGhost<span class="accent">.sec</span></span>
+            </a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#blog">Blog</a></li>
+                <li><a href="walkthroughs.html">Walkthroughs</a></li>
+                <li><a href="posts.html" class="active">Posts</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="https://github.com" target="_blank" class="nav-github"><i class="fab fa-github"></i></a></li>
+            </ul>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Posts Page -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2><i class="fas fa-newspaper"></i> Posts</h2>
+                <p>All published research posts, analysis, and security insights in one place.</p>
+            </div>
+
+            <div class="blog-grid">
+                <article class="blog-card" onclick="window.location.href='posts/sa-ddos-attacks.html'">
+                    <div class="card-tag"><i class="fas fa-crosshairs"></i> Threat Analysis</div>
+                    <h3>South Africa Under Siege: Breaking Down the Massive DDoS Campaign</h3>
+                    <p>Multiple SA internet providers hit by coordinated DDoS attacks peaking at 1 Tbps. Breaking down what happened, how they did it, and what defenders need to know.</p>
+                    <div class="card-meta">
+                        <span><i class="far fa-calendar"></i> 19 May 2026</span>
+                        <span><i class="far fa-clock"></i> 8 min read</span>
+                    </div>
+                </article>
+
+                <article class="blog-card" onclick="window.location.href='posts/zero-day-analysis.html'">
+                    <div class="card-tag"><i class="fas fa-virus"></i> Zero-Day Research</div>
+                    <h3>Anatomy of a Zero-Day: Dissecting CVE-2026-XXXX</h3>
+                    <p>A technical breakdown of a recent zero-day vulnerability in the wild — how the exploit chain works and what defenders need to do to stay ahead.</p>
+                    <div class="card-meta">
+                        <span><i class="far fa-calendar"></i> 17 May 2026</span>
+                        <span><i class="far fa-clock"></i> 10 min read</span>
+                    </div>
+                </article>
+
+                <article class="blog-card">
+                    <div class="card-tag"><i class="fas fa-clock"></i> Coming Soon</div>
+                    <h3>More research posts are on the way</h3>
+                    <p>Keep checking back for new threat intel, ransomware investigations, and defensive research from the HappyGhost blog.</p>
+                    <div class="card-meta">
+                        <span><i class="far fa-calendar"></i> Updated regularly</span>
+                        <span><i class="far fa-clock"></i> —</span>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2026 HappyGhost. Built with <i class="fas fa-skull-crossbones accent"></i> and hosted on GitHub Pages.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

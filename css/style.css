@@ -695,6 +695,26 @@ a:hover { opacity: 0.85; }
     margin-bottom: 32px;
 }
 
+.post-body figure {
+    margin: 32px 0;
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+}
+
+.post-body figure img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.post-body figcaption {
+    padding: 14px 16px;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
 .post-body ul {
     margin: 16px 0 24px 24px;
     color: var(--text-secondary);
@@ -1096,9 +1116,24 @@ a:hover { opacity: 0.85; }
 }
 
 .more-posts {
-
     text-align: center;
-
     margin-top: 40px;
+}
 
+.more-posts-about {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 32px;
+}
+
+.more-posts-btn {
+    max-width: 240px;
+    width: auto;
+    padding: 12px 18px;
+    justify-content: flex-start;
+    white-space: nowrap;
+}
+
+.more-posts-btn i {
+    font-size: 0.95rem;
 }

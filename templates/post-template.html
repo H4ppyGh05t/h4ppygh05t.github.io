@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ✏️ CHANGE: Update this title for the new article -->
+    <title>POST TITLE | HappyGhost.sec</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- Navigation (Leave as-is unless you want to change navigation links) -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <span class="logo-icon"><i class="fas fa-shield-halved"></i></span>
+                <span class="logo-text">HappyGhost<span class="accent">.sec</span></span>
+            </a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../index.html#blog" class="active">Blog</a></li>
+                <li><a href="../walkthroughs.html">Walkthroughs</a></li>
+                <li><a href="../posts.html">Posts</a></li>
+                <li><a href="../index.html#about">About</a></li>
+            </ul>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Post Content -->
+    <article class="post-page">
+        <div class="container">
+            <div class="post-header">
+                <!-- ✏️ CHANGE: Update the back link if needed -->
+                <a href="../index.html#blog" class="back-link"><i class="fas fa-arrow-left"></i> Back to Blog</a>
+
+                <!-- ✏️ CHANGE: Choose the category tag and icon -->
+                <div class="card-tag"><i class="fas fa-crosshairs"></i> Threat Analysis</div>
+
+                <!-- ✏️ CHANGE: Article title -->
+                <h1>Post Title Goes Here</h1>
+
+                <!-- ✏️ CHANGE: Update date, read time, and author -->
+                <div class="post-meta">
+                    <span><i class="far fa-calendar"></i> 21 May 2026</span>
+                    <span><i class="far fa-clock"></i> 8 min read</span>
+                    <span><i class="far fa-user"></i> Your Name</span>
+                </div>
+            </div>
+
+            <div class="post-body">
+                <!-- ✏️ CHANGE: Add a strong opening summary to hook the reader -->
+                <p class="lead">Start with a quick overview. Explain the topic, why it matters, and what the reader will learn.</p>
+
+                <!-- ✏️ CHANGE: Optional image block. Store image files in posts/images/ and use src="images/example-image.png" when this file is copied into posts/ -->
+                <!--
+                <figure class="post-image">
+                    <img src="images/example-image.png" alt="Short description of the image">
+                    <figcaption>Figure 1: Caption describing the image.</figcaption>
+                </figure>
+                -->
+
+                <h2>Intro / Context</h2>
+                <p>Write the first section here. This is a great place for background, incident details, or a threat overview.</p>
+
+                <h2>Main Findings</h2>
+                <p>Use headings and paragraphs to break the post into readable sections. Add bullet lists, examples, and analysis as needed.</p>
+
+                <div class="callout">
+                    <i class="fas fa-lightbulb"></i>
+                    <div>
+                        <strong>Pro tip:</strong> Use this callout block for key takeaways, warnings, or technical notes.
+                    </div>
+                </div>
+
+                <h3>Technical Detail</h3>
+                <p>Include code snippets, commands, or pseudo-code here. Keep text concise and highlight the important details.</p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span><i class="fas fa-code"></i> Bash</span>
+                        <span>example-command.sh</span>
+                    </div>
+                    <pre><code># Example command
+curl -s https://example.com | python3 analyze.py</code></pre>
+                </div>
+
+                <h2>Impact and Recommendations</h2>
+                <p>Explain the consequences and what defenders should do. Include concrete mitigation steps or detection ideas.</p>
+
+                <h2>Sources</h2>
+                <ul>
+                    <li><a href="#" target="_blank">Source 1</a></li>
+                    <li><a href="#" target="_blank">Source 2</a></li>
+                    <li><a href="#" target="_blank">Source 3</a></li>
+                </ul>
+            </div>
+
+            <div class="post-footer-nav">
+                <a href="../index.html#blog" class="btn btn-outline"><i class="fas fa-arrow-left"></i> All Posts</a>
+            </div>
+        </div>
+    </article>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2026 HappyGhost. Built with <i class="fas fa-skull-crossbones accent"></i> and hosted on GitHub Pages.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>
