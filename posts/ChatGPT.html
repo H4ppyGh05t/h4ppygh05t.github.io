@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ✏️ CHANGE: Update this title for the new article -->
+    <title>LLMShare: When Trusted AI Links Become Malware Delivery | HappyGhost.sec</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- Navigation (Leave as-is unless you want to change navigation links) -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <span class="logo-icon"><i class="fas fa-shield-halved"></i></span>
+                <span class="logo-text">HappyGhost<span class="accent">.sec</span></span>
+            </a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../walkthroughs.html">Walkthroughs</a></li>
+                <li><a href="../posts.html">Posts</a></li>
+                <li><a href="../index.html#about">About</a></li>
+            </ul>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Post Content -->
+    <article class="post-page">
+        <div class="container">
+            <div class="post-header">
+                <a href="../posts.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Posts</a>
+
+                <div class="card-tag"><i class="fas fa-crosshairs"></i> Threat Analysis</div>
+
+                <h1>LLMShare: When Trusted AI Links Become Malware Delivery</h1>
+
+                <div class="post-meta">
+                    <span><i class="far fa-calendar"></i> 01 June 2026</span>
+                    <span><i class="far fa-clock"></i> 6 min read</span>
+                    <span><i class="far fa-user"></i> Eugene Myburgh</span>
+                </div>
+            </div>
+
+            <div class="post-body">
+                <p class="lead">
+                    A new campaign dubbed <strong>LLMShare</strong> is turning one of the most trusted platforms on the internet—AI chat tools—into a malware delivery mechanism. By abusing ChatGPT share links and hiding malicious content behind legitimate domains, attackers are bypassing traditional security controls and exploiting user trust at scale.
+                </p>
+
+                <h2>Intro / Context</h2>
+                <p>
+                    In May 2026, researchers uncovered a malvertising campaign where threat actors abused ChatGPT’s sharing feature to host fake outage pages. These pages appear on legitimate <strong>chatgpt.com</strong> URLs, making them highly believable and difficult for both users and security tools to detect.
+                </p>
+
+                <p>
+                    Instead of traditional phishing sites hosted on suspicious domains, attackers now leverage trusted platforms themselves. Victims are lured via malicious Google ads and SEO poisoning, landing on what looks like an official ChatGPT page—but it’s actually weaponized content generated using the platform itself.
+                </p>
+
+                <h2>Main Findings</h2>
+                <p>
+                    The attack chain is simple, but highly effective:
+                </p>
+
+                <ul>
+                    <li>Users search for “ChatGPT” or related terms</li>
+                    <li>They click a malicious sponsored ad</li>
+                    <li>The link leads to a legitimate ChatGPT share page</li>
+                    <li>The page displays a fake “service outage” message</li>
+                    <li>Users are prompted to download a “desktop app”</li>
+                    <li>The download delivers malware</li>
+                </ul>
+
+                <p>
+                    What makes this attack dangerous is the use of a trusted domain. Since the initial page lives on <strong>chatgpt.com</strong>, traditional URL filtering and security validation mechanisms fail to flag it as malicious.
+                </p>
+
+                <div class="callout">
+                    <i class="fas fa-lightbulb"></i>
+                    <div>
+                        <strong>Key insight:</strong> This attack isn’t about breaking security tools—it’s about bypassing them entirely by abusing <em>trusted infrastructure</em>.
+                    </div>
+                </div>
+
+                <h3>Technical Detail</h3>
+                <p>
+                    Attackers are using ChatGPT’s code rendering capabilities to generate fully styled HTML pages directly within shared links. These pages mimic official outage notifications and include download buttons that redirect victims to attacker-controlled infrastructure.
+                </p>
+
+                <p>
+                    Once redirected, victims land on a fake OpenAI download portal (e.g., <code>openew[.]app</code>) which serves malware tailored for both Windows and macOS systems, often deploying credential-stealing payloads.
+                </p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span><i class="fas fa-code"></i> Indicators</span>
+                        <span>llmshare-iocs.txt</span>
+                    </div>
+                    <pre><code># Suspicious patterns seen in LLMShare campaigns
+
+chatgpt.com/s/*            # Legitimate share links used maliciously
+openew[.]app              # Fake ChatGPT download site
+"high traffic" outage msg # Social engineering lure
+download desktop app      # Trigger phrase
+
+# Behavioral indicator
+User redirected from trusted domain to external download site
+                    </code></pre>
+                </div>
+
+                <h2>Impact and Recommendations</h2>
+                <p>
+                    The LLMShare campaign highlights a major shift in attacker tactics—moving from fake domains to abusing real, trusted platforms. This significantly increases success rates, as users are trained to trust domains like ChatGPT.
+                </p>
+
+                <p><strong>Key risks:</strong></p>
+                <ul>
+                    <li>Credential theft (browser passwords, session cookies)</li>
+                    <li>Malware infection on both macOS and Windows</li>
+                    <li>Bypassing traditional URL filtering and reputation checks</li>
+                </ul>
+
+                <p><strong>Recommended mitigations:</strong></p>
+                <ul>
+                    <li>Educate users: trusted domain ≠ trusted content</li>
+                    <li>Block or inspect outbound downloads from unknown domains</li>
+                    <li>Avoid clicking sponsored ads for software downloads</li>
+                    <li>Validate software sources manually (go directly to vendor sites)</li>
+                    <li>Implement browser isolation or advanced threat protection</li>
+                </ul>
+
+                <div class="callout">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <div>
+                        <strong>Warning:</strong> Legitimate services will never ask you to download software just because their website is “down.”
+                    </div>
+                </div>
+
+                <h2>Sources</h2>
+                <ul>
+                    <li><a href="https://pushsecurity.com/blog/llmshare-malvertising-campaign" target="_blank">Push Security – LLMShare Campaign</a></li>
+                    <li><a href="https://www.bleepingcomputer.com/news/security/chatgpt-share-links-abused-to-host-fake-outage-pages-to-deliver-malware/" target="_blank">BleepingComputer – ChatGPT Share Link Abuse</a></li>
+                </ul>
+            </div>
+
+            <div class="post-footer-nav">
+                <a href="../posts.html" class="btn btn-outline"><i class="fas fa-arrow-left"></i> All Posts</a>
+            </div>
+        </div>
+    </article>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2026 HappyGhost. Built with <i class="fas fa-skull-crossbones accent"></i> and hosted on GitHub Pages.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>
+``
